@@ -2,20 +2,34 @@ package project;
 
 import java.util.Date;
 
-public abstract class Person {
-	
+public class Person {
 	
 	//Variables 
 	private String firstName, lastName, phone, email, address, userName, password;
 	private Date DOB; 
 	private int SSN;
 	
+	//constructor
+	public Person(String firstName, String lastName, String phone, String email, String address, String userName,
+			String password, Date dOB, int sSN) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+		this.userName = userName;
+		this.password = password;
+		DOB = dOB;
+		SSN = sSN;
+	}
+
 	//Constructor
 	public Person() {
 		super();
 	}
 	
-	//protected getters and setters
+	// getters and setters
 	protected String getFirstName() {
 		return firstName;
 	}	
@@ -70,7 +84,5 @@ public abstract class Person {
 	protected void setSSN(int sSN) {
 		SSN = sSN;
 	}
-	
-	
 
 }
