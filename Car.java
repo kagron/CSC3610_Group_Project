@@ -1,4 +1,4 @@
-package base_classes;
+package CSC3610_Group_Project;
 
 public class Car {
 	// Create attributes
