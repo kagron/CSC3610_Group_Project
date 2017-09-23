@@ -1,4 +1,4 @@
-package project;
+package CSC3610_Group_Project;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ public class Person {
 	
 	//constructor
 	public Person(String firstName, String lastName, String phone, String email, String address, String userName,
-			String password, Date dOB, int sSN) {
+			String password, Date dOB, int SSN) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -20,8 +20,8 @@ public class Person {
 		this.address = address;
 		this.userName = userName;
 		this.password = password;
-		DOB = dOB;
-		SSN = sSN;
+		this.DOB = dOB;
+		this.SSN = SSN;
 	}
 
 	//Constructor
@@ -83,6 +83,13 @@ public class Person {
 	}
 	protected void setSSN(int sSN) {
 		SSN = sSN;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone + ", email=" + email
+				+ ", address=" + address + ", userName=" + userName + ", password=" + password + ", DOB=" + DOB
+				+ ", SSN=" + SSN + "]";
 	}
 
 }
