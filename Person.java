@@ -1,17 +1,17 @@
 package CSC3610_Group_Project;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Person {
 	
 	//Variables 
 	private String firstName, lastName, phone, email, address, userName, password;
-	private Date DOB; 
-	private int SSN;
+	private LocalDate DOB; 
+	private String SSN;
 	
 	//constructor
 	public Person(String firstName, String lastName, String phone, String email, String address, String userName,
-			String password, Date dOB, int SSN) {
+			String password, LocalDate dOB2, String sSN2) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -20,8 +20,8 @@ public class Person {
 		this.address = address;
 		this.userName = userName;
 		this.password = password;
-		this.DOB = dOB;
-		this.SSN = SSN;
+		this.DOB = dOB2;
+		this.SSN = sSN2;
 	}
 
 	//Constructor
@@ -72,24 +72,23 @@ public class Person {
 	protected void setPassword(String password) {
 		this.password = password;
 	}
-	protected Date getDOB() {
+	protected LocalDate getDOB() {
 		return DOB;
 	}
-	protected void setDOB(Date dOB) {
-		DOB = dOB;
+	protected void setDOB(LocalDate localDate) {
+		DOB = localDate;
 	}
-	protected int getSSN() {
+	protected String getSSN() {
 		return SSN;
 	}
-	protected void setSSN(int sSN) {
+	protected void setSSN(String sSN) {
 		SSN = sSN;
 	}
 
 	@Override
 	public String toString() {
-		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone + ", email=" + email
-				+ ", address=" + address + ", userName=" + userName + ", password=" + password + ", DOB=" + DOB
-				+ ", SSN=" + SSN + "]";
+		return firstName + "\t" + lastName + "\t" + phone + "\t" + email + "\t" + address 
+				+ "\t" + userName + "\t" + password + "\t" + DOB + "\t" + SSN;
 	}
 
 }
