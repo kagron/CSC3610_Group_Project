@@ -1,7 +1,6 @@
 package CSC3610_Group_Project;
 
-import java.io.File;
-import java.io.FileWriter;
+
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -18,14 +17,14 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class RegisterController extends Application{
 
 	private Stage primaryStage;
-	private BorderPane rootLayout;
-	private BorderPane logInLayout;
+	private AnchorPane rootLayout;
+	private AnchorPane logInLayout;
 	@FXML
 	private TextField txtFirstName;
 	@FXML
@@ -88,7 +87,7 @@ public class RegisterController extends Application{
 		loader.setLocation(RegisterController.class.getResource("RegisterScene.fxml"));
 		
 		try{
-			rootLayout = (BorderPane) loader.load();
+			rootLayout = (AnchorPane) loader.load();
 		}catch (IOException e){
 			e.printStackTrace();
 		}
@@ -116,25 +115,13 @@ public class RegisterController extends Application{
 			customer.setPhone(txtPhoneNumber.getText());
 			customer.setSSN(txtSocialSecurityNumber.getText());
 			
-			try{
-				File file = new File("TeslaCustomer.xls");
-				FileWriter fileWriter = new FileWriter(file);
-				fileWriter.append(customer.toString());
-				fileWriter.close();
-
-				
-			}catch(IOException ioe){
-				ioe.printStackTrace();
-			}
+			MasterPaneController.userMap.put(customer.getUserName(), customer);
 			
 			try{
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(LogInController.class.getResource("LogInScene.fxml"));
-				logInLayout = (BorderPane) loader.load();
-				Stage stage = new Stage();
-				stage.setTitle("Log IN");
-				stage.setScene(new Scene(logInLayout));
-				stage.show();
+				logInLayout = (AnchorPane) loader.load();
+				MasterPaneController.masterLayout.setCenter(logInLayout);
 				
 			}catch (IOException ex){
 				ex.printStackTrace();
