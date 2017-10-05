@@ -1,27 +1,26 @@
 package CSC3610_Group_Project;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class UserSceneController extends Application {
 	
+	public static String firstName, lastName, phone, email, address, userName, password;
+	public static LocalDate DOB; 
+	public static String SSN;
+	
 	private Stage primaryStage;
 	private AnchorPane controlsData;
-	private BorderPane registerLayout;
+	private AnchorPane registerLayout;
 	
 	@FXML
 	private TextArea txtDisplayArea; 
@@ -37,9 +36,7 @@ public class UserSceneController extends Application {
 	
 	@FXML
 	private Button btnCart;
-	
-	@FXML
-	private MenuItem fileClose;
+
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -67,30 +64,18 @@ public class UserSceneController extends Application {
 	
 	//closes program
 	btnUpdateInfo.setOnAction((event) ->{
+			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(LogInController.class.getResource("RegisterScene.fxml"));
 			try {
-				registerLayout = (BorderPane) loader.load();
+				registerLayout = (AnchorPane) loader.load();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			Stage stage = new Stage();
-			stage.setTitle("Register");
-			stage.setScene(new Scene(registerLayout));
-			stage.show();	
+			MasterPaneController.masterLayout.setCenter(registerLayout);
 	});
-
-		fileClose.setOnAction((event) -> {
-			Platform.exit();
-		});
 		
-		
-		Customer customer = new Customer();
-		String setDescription = "First Name: " + customer.getFirstName() + "\nLast Name: " + customer.getLastName() + "\nPassword: " + customer.getPassword()
-									+ "\nUserName: " + customer.getUserName() + "\nPhone Number: " + customer.getPhone() + "\nSSN: " + customer.getSSN()
-									+ "\nAddress: " + customer.getAddress() + "\nDOB: " + customer.getDOB() + "\nEmail: "	+ customer.getEmail();
-		
-		txtDisplayArea.setText(setDescription);
+		//txtDisplayArea.setText(MasterPaneController.userMap.get(LogInController.userName).toString());
 
 		
 	 }
