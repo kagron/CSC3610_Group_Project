@@ -1,25 +1,25 @@
 package CSC3610_Group_Project;
 
 import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class LogInController extends Application{
 
 	private Stage primaryStage;
-	private BorderPane rootLayout;
-	private BorderPane registerLayout;
-	private BorderPane userLayout;
+	private AnchorPane rootLayout;
+	private AnchorPane registerLayout;
+	private AnchorPane userLayout;
+	protected static String userName;
 	@FXML
 	private TextField txtUsername;
 	@FXML
@@ -29,20 +29,7 @@ public class LogInController extends Application{
 	@FXML
 	private Button btnRegister;
 	@FXML
-	private MenuBar mbMenu;
-	@FXML
-	private Menu mFile;
-	@FXML
-	private Menu mEdit;
-	@FXML
-	private Menu mHelp;
-	@FXML
-	private MenuItem miClose;
-	@FXML
-	private MenuItem miDelete;
-	@FXML
-	private MenuItem miAbout;
-	
+	private Label lblForgotPassword;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -54,7 +41,7 @@ public class LogInController extends Application{
 		logInLoader.setLocation(LogInController.class.getResource("LogInScene.fxml"));
 		
 		try{
-			rootLayout = (BorderPane) logInLoader.load();
+			rootLayout = (AnchorPane) logInLoader.load();
 		}catch (IOException e){
 			e.printStackTrace();
 		}
@@ -70,11 +57,8 @@ public class LogInController extends Application{
 		try{
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(LogInController.class.getResource("RegisterScene.fxml"));
-			registerLayout = (BorderPane) loader.load();
-			Stage stage = new Stage();
-			stage.setTitle("Register");
-			stage.setScene(new Scene(registerLayout));
-			stage.show();
+			registerLayout = (AnchorPane) loader.load();
+			MasterPaneController.masterLayout.setCenter(registerLayout);
 			
 			
 		}catch (IOException ex){
@@ -85,30 +69,23 @@ public class LogInController extends Application{
 	
 	@FXML
 	public void btLogInAction(ActionEvent e){
-		
-		try{
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(LogInController.class.getResource("UserScene.fxml"));
-			userLayout = (BorderPane) loader.load();
-			Stage stage = new Stage();
-			stage.setTitle("User");
-			stage.setScene(new Scene(userLayout));
-			stage.show();
-			
-		}catch (IOException ex){
-			ex.printStackTrace();
+		if(MasterPaneController.userMap.containsKey(txtUsername.getText())){
+			if(MasterPaneController.userMap.get(txtUsername).getPassword() == txtPassword.getText()){
+				userName = txtUsername.getText();
+				try{
+					FXMLLoader userLoader = new FXMLLoader();
+					userLoader.setLocation(LogInController.class.getResource("UserScene.fxml"));
+					userLayout = (AnchorPane) userLoader.load();
+					MasterPaneController.masterLayout.setCenter(userLayout);
+				
+				}catch (IOException ex){
+					ex.printStackTrace();
+				}
+			}
 		}
-	}
-	
-	@FXML
-	public void miCloseAction(ActionEvent e){
-		System.exit(0);
-	}
-	
-	
-	@FXML
-	public void miAboutAction(ActionEvent e){
-		
+		else{
+			lblForgotPassword.setText("Did you forget your password? Please try again.");
+		}
 	}
 	
 	public static void main(String[] args){
