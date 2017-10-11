@@ -1,8 +1,8 @@
 package CSC3610_Group_Project;
+package CSC3610_Group_Project;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -75,7 +75,7 @@ public class UserSceneController extends Application {
 			MasterPaneController.masterLayout.setCenter(registerLayout);
 	});
 		
-		//txtDisplayArea.setText(MasterPaneController.userMap.get(LogInController.userName).toString());
+		txtDisplayArea.setText(MasterPaneController.userMap.get(LogInController.userName).toString());
 
 		
 	 }
@@ -83,8 +83,5 @@ public class UserSceneController extends Application {
 		launch(args);
 		}		
 }
-
-
-
 
 
