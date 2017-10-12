@@ -94,8 +94,4 @@ public class ForgotPasswordController extends Application {
 	public static void main(String[] args){
 		launch(args);
 	}		
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> upstream/Car-Class

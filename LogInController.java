@@ -92,14 +92,6 @@ public class LogInController extends Application{
 			}catch (IOException ex){
 				ex.printStackTrace();
 			}		}
-<<<<<<< HEAD
-=======
-}
-	public static void main(String[] args){
-		launch(args);
-	}
-	
->>>>>>> upstream/Car-Class
 }
 	public static void main(String[] args){
 		launch(args);
