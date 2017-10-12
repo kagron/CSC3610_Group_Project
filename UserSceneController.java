@@ -1,5 +1,4 @@
 package CSC3610_Group_Project;
-package CSC3610_Group_Project;
 
 import java.io.IOException;
 import java.time.LocalDate;
