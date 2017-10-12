@@ -1,7 +1,11 @@
 package CSC3610_Group_Project;
 
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.*;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +21,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class RegisterController extends Application{
@@ -105,7 +110,7 @@ public class RegisterController extends Application{
 			
 			Customer customer = new Customer();
 			customer.setAddress(txtStreet.getText() + "\t" + txtCity.getText() + "\t" + cboState.getValue().toString() + "\t" + txtZip.getText());
-			customer.setDOB(dpDOB.getValue());
+			customer.setDOB(java.sql.Date.valueOf(dpDOB.getValue()));
 			customer.setEmail(txtEmail.getText());
 			customer.setFirstName(txtFirstName.getText());
 			customer.setLastName(txtLastName.getText());
@@ -113,6 +118,11 @@ public class RegisterController extends Application{
 			customer.setUserName(txtUsername.getText());
 			customer.setPhone(txtPhoneNumber.getText());
 			customer.setSSN(txtSocialSecurityNumber.getText());
+			
+			// Send in customer to register
+			Connect conn = new Connect();
+			System.out.println("Sending in customer");
+			conn.register(customer);
 			
 			MasterPaneController.userMap.put(customer.getUserName(), customer);
 			

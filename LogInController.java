@@ -31,6 +31,7 @@ public class LogInController extends Application{
 	@FXML
 	private Label lblForgotPassword;
 	
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
@@ -45,6 +46,7 @@ public class LogInController extends Application{
 		}catch (IOException e){
 			e.printStackTrace();
 		}
+		
 		
 		Scene scene = new Scene(rootLayout);
 		primaryStage.setScene(scene);
@@ -69,29 +71,39 @@ public class LogInController extends Application{
 	
 	@FXML
 	public void btLogInAction(ActionEvent e){
-		if(MasterPaneController.userMap.containsKey(txtUsername.getText())){
-				userName = txtUsername.getText();
-				try{
-					FXMLLoader userLoader = new FXMLLoader();
-					userLoader.setLocation(LogInController.class.getResource("UserScene.fxml"));
-					userLayout = (AnchorPane) userLoader.load();
-					MasterPaneController.masterLayout.setCenter(userLayout);
-				
-				}catch (IOException ex){
-					ex.printStackTrace();
-				}
-	
+		Connect conn = new Connect();
+		conn.initalizeDB();
+		userName = txtUsername.getText();
+		String password = txtPassword.getText();
+		if(conn.validate(userName,password)) {
+			System.out.println("Found in database");
+		} else {
+			System.out.println("Not found");
 		}
-		else{
-			try{
-				FXMLLoader userLoader = new FXMLLoader();
-				userLoader.setLocation(ForgotPasswordController.class.getResource("ForgotPasswordScene.fxml"));
-				forgotLayout = (AnchorPane) userLoader.load();
-				MasterPaneController.masterLayout.setCenter(forgotLayout);
-			
-			}catch (IOException ex){
-				ex.printStackTrace();
-			}		}
+//		if(MasterPaneController.userMap.containsKey(txtUsername.getText())){
+//				userName = txtUsername.getText();
+//				try{
+//					FXMLLoader userLoader = new FXMLLoader();
+//					userLoader.setLocation(LogInController.class.getResource("UserScene.fxml"));
+//					userLayout = (AnchorPane) userLoader.load();
+//					MasterPaneController.masterLayout.setCenter(userLayout);
+//				
+//				}catch (IOException ex){
+//					System.out.println("asldkjfa");
+//					ex.printStackTrace();
+//				}
+//	
+//		}
+//		else{
+//			try{
+//				FXMLLoader userLoader = new FXMLLoader();
+//				userLoader.setLocation(ForgotPasswordController.class.getResource("ForgotPasswordScene.fxml"));
+//				forgotLayout = (AnchorPane) userLoader.load();
+//				MasterPaneController.masterLayout.setCenter(forgotLayout);
+//			
+//			}catch (IOException ex){
+//				ex.printStackTrace();
+//			}		}
 }
 	public static void main(String[] args){
 		launch(args);
