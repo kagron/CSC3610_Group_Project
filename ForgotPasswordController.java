@@ -18,7 +18,7 @@ public class ForgotPasswordController extends Application {
 	private AnchorPane rootLayout;
 	private AnchorPane registerLayout;
 	private AnchorPane userLayout;
-	private AnchorPane forgotLoader;
+	private AnchorPane forgotLayout;
 	protected static String userName;
 	@FXML
 	private TextField txtUsername;
@@ -66,25 +66,24 @@ public class ForgotPasswordController extends Application {
 	@FXML
 	public void btLogInAction(ActionEvent e){
 		if(MasterPaneController.userMap.containsKey(txtUsername.getText())){
-			if(MasterPaneController.userMap.get(txtUsername).getPassword() == txtPassword.getText()){
 				userName = txtUsername.getText();
 				try{
 					FXMLLoader userLoader = new FXMLLoader();
-					userLoader.setLocation(LogInController.class.getResource("UserScene.fxml"));
+					userLoader.setLocation(ForgotPasswordController.class.getResource("UserScene.fxml"));
 					userLayout = (AnchorPane) userLoader.load();
 					MasterPaneController.masterLayout.setCenter(userLayout);
 				
 				}catch (IOException ex){
 					ex.printStackTrace();
 				}
-	}
+	
 		}
 		else{
 			try{
 				FXMLLoader userLoader = new FXMLLoader();
 				userLoader.setLocation(ForgotPasswordController.class.getResource("ForgotPasswordScene.fxml"));
-				forgotLoader = (AnchorPane) userLoader.load();
-				MasterPaneController.masterLayout.setCenter(forgotLoader);
+				forgotLayout = (AnchorPane) userLoader.load();
+				MasterPaneController.masterLayout.setCenter(forgotLayout);
 			
 			}catch (IOException ex){
 				ex.printStackTrace();
@@ -95,4 +94,8 @@ public class ForgotPasswordController extends Application {
 	public static void main(String[] args){
 		launch(args);
 	}		
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/Car-Class
