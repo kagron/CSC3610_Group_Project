@@ -1,17 +1,18 @@
 	package CSC3610_Group_Project;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Person {
 	
 	//Variables 
 		private String firstName, lastName, phone, email, address, userName, password;
-		private LocalDate DOB; 
+		private Date DOB; 
 		private String SSN;
 		
 		//constructor
 		public Person(String firstName, String lastName, String phone, String email, String address, String userName,
-				String password, LocalDate dOB2, String sSN2) {
+				String password, Date dOB2, String sSN2) {
 			super();
 			this.firstName = firstName;
 			this.lastName = lastName;
@@ -72,11 +73,11 @@ public class Person {
 		protected void setPassword(String password) {
 			this.password = password;
 		}
-		protected LocalDate getDOB() {
+		protected Date getDOB() {
 			return DOB;
 		}
-		protected void setDOB(LocalDate localDate) {
-			DOB = localDate;
+		protected void setDOB(Date date) {
+			this.DOB = date;
 		}
 		protected String getSSN() {
 			return SSN;
