@@ -2,6 +2,7 @@ package CSC3610_Group_Project;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 
 import javafx.application.Application;
@@ -101,12 +102,12 @@ public class MasterPaneController extends Application{
 
 
 		public static void main(String[] args) {
-			
+				
 				Customer customer = new Customer();
 
-				LocalDate date = LocalDate.of(1990, 5, 8);
+//				Date date = LocalDate.of(1990, 5, 8);
 
-				customer.setDOB(date);
+//				customer.setDOB(date);
 
 				customer.setEmail("jack@gmail.com");
 
