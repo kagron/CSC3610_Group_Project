@@ -71,15 +71,42 @@ public class LogInController extends Application{
 	
 	@FXML
 	public void btLogInAction(ActionEvent e){
+		// Attempt to log in by creating a connect object
 		Connect conn = new Connect();
+		// Initialize the DB and grab the username and password
 		conn.initalizeDB();
 		userName = txtUsername.getText();
 		String password = txtPassword.getText();
+		// If validate returns true, that means that the user is found in the database and their password is correct
 		if(conn.validate(userName,password)) {
-			System.out.println("Found in database");
+			// Set a fake "cookie" as loggedInUser that will be used later
+			String loggedInUser = userName;
+			System.out.println("Welcome, " + loggedInUser + "!");
+			// Try to load the user scene
+			try{
+				FXMLLoader userLoader = new FXMLLoader();
+				userLoader.setLocation(LogInController.class.getResource("UserScene.fxml"));
+				userLayout = (AnchorPane) userLoader.load();
+				MasterPaneController.masterLayout.setCenter(userLayout);
+			
+			}catch (IOException ex){
+				ex.printStackTrace();
+			}
+		// If the user is not found in the database OR if the password is incorrect (i think)
 		} else {
-			System.out.println("Not found");
+		
+			try{
+				FXMLLoader userLoader = new FXMLLoader();
+				userLoader.setLocation(ForgotPasswordController.class.getResource("ForgotPasswordScene.fxml"));
+				forgotLayout = (AnchorPane) userLoader.load();
+				MasterPaneController.masterLayout.setCenter(forgotLayout);
+			
+			}catch (IOException ex){
+				ex.printStackTrace();
+			}		
 		}
+		
+	
 //		if(MasterPaneController.userMap.containsKey(txtUsername.getText())){
 //				userName = txtUsername.getText();
 //				try{
