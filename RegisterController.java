@@ -109,7 +109,7 @@ public class RegisterController extends Application{
 				&& txtStreet.getText() != null && txtCity.getText() != null && cboState.getValue() != null && txtZip.getText() != null){
 			
 			Customer customer = new Customer();
-			customer.setAddress(txtStreet.getText() + "\t" + txtCity.getText() + "\t" + cboState.getValue().toString() + "\t" + txtZip.getText());
+			customer.setAddress(txtStreet.getText() + " " + txtCity.getText() + " " + cboState.getValue().toString() + ", " + txtZip.getText());
 			customer.setDOB(java.sql.Date.valueOf(dpDOB.getValue()));
 			customer.setEmail(txtEmail.getText());
 			customer.setFirstName(txtFirstName.getText());
@@ -121,11 +121,12 @@ public class RegisterController extends Application{
 			
 			// Send in customer to register
 			Connect conn = new Connect();
+			conn.initalizeDB();
 			System.out.println("Sending in customer");
 			conn.register(customer);
 			
-			MasterPaneController.userMap.put(customer.getUserName(), customer);
-			
+			//MasterPaneController.userMap.put(customer.getUserName(), customer);
+			// Send it back to the log in scene
 			try{
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(LogInController.class.getResource("LogInScene.fxml"));

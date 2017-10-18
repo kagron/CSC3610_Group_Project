@@ -1,3 +1,4 @@
+// Connect Class
 package CSC3610_Group_Project;
 
 import java.sql.*;
@@ -6,15 +7,16 @@ import java.util.GregorianCalendar;
 public class Connect {
 	Connection connection;
 	PreparedStatement preparedStatement;
+	// Start the database.  Run this method everytime you need to connect to it
 	public void initalizeDB(){
 		try {
 			// Load the driver
 			Class.forName("com.mysql.jdbc.Driver"); System.out.println("Driver Loaded");
 			
 			
-			//Connect to the database
+			//Connect to the database.  Make sure you have a user called "csc_student" with password "csc3610" or this wont work!
 			connection = DriverManager.getConnection("jdbc:mysql://localhost/java3Final","csc_student","csc3610");
-			System.out.println("Database connected"); //Create a statement
+			System.out.println("Database connected"); 
 		
 			
 		} catch (SQLException e) {
@@ -23,24 +25,30 @@ public class Connect {
 			e.printStackTrace();
 		}
 	}
+	// Log in validation
 	public boolean validate(String username, String password){
-		 String queryString = "select * from user " +
+		// Create the query that will be filled in later
+		 String queryString = "select userName, password from user " +
 	    			"where userName = ? ";
 	    			
 		// Create a statement
 		try {
+			// Prepare the statement and set the ? to the username
 			preparedStatement = connection.prepareStatement(queryString);
 			preparedStatement.setString(1, username);
 		    ResultSet rset = preparedStatement.executeQuery();
+		    // Once user is found, check the password
 		    if (rset.next()) {
 		    		System.out.println("Checking password");
-		    	  if(rset.getString(7).equals(password)) {
+		    	  if(rset.getString(2).equals(password)) {
+		    		  // Only return true if the password is the same
 		    		  return true;
 		    	  } else {
+		    		  // This is where the incorrect password alert should pop up
 		    		  System.out.println("incorrect password");
 		    	  }
 		    } else { 
-		    	  // Throw new exception
+		    	  // Throw new exception and alert
 		    	  System.out.println("Not found in database");
 		    }
 		} catch (SQLException e) {
@@ -48,10 +56,33 @@ public class Connect {
 		}
 		return false;
 	}
+	// Create customer object
+	public Person createPerson(String loggedInUser){
+		String username = loggedInUser;
+		String query = "select * from user where userName = '"+ username+ "'";
+		Person person1 = new Person();
+		try {
+			Statement stmt = connection.createStatement();
+			ResultSet rs1 = stmt.executeQuery(query);
+			if(rs1.next()){
+				person1.setFirstName(rs1.getString(1));
+				person1.setLastName(rs1.getString(2));
+				person1.setPhone(rs1.getString(3));
+				person1.setEmail(rs1.getString(4));
+				person1.setAddress(rs1.getString(5));
+				person1.setUserName(rs1.getString(6));
+				person1.setDOB(rs1.getDate(8));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return person1;
+	}
+	// Register action
 	public void register(Customer cus) {
-		String query = "insert into user values(?,?,?,?,?,?,?,?,?)";
-		System.out.println("Attempting to set strings");
-		System.out.println(cus);
+		// Will take in a customer object and create a prepared statement
+		String query = "insert into user (firstName, lastName, phone, email, address, userName, password, DOB, ssn) values (?,?,?,?,?,?,?,?,?);";
+		// Prepare the statement by setting the strings equal to the various getter methods
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			
@@ -64,17 +95,16 @@ public class Connect {
 			preparedStatement.setString(7, cus.getPassword());
 			preparedStatement.setDate(8, (Date) cus.getDOB(), new GregorianCalendar() );
 			preparedStatement.setString(9, cus.getSSN());
-			ResultSet rset = preparedStatement.executeQuery();
-			if(rset.next()){
-				System.out.println("test");
-			}
+			// Execute the query
+			preparedStatement.execute();
+			// This only prints out when a customer is fully added.  Delete this line later
 			System.out.println("Customer added");
 		} catch (SQLException e) {
-			System.out.println("test");
+			// This exception will only happen if a SQL error occurs
 			e.printStackTrace();
 		}
 	}
-	
+	// Close the database
 	public void closeDB() {
 		try {
 			connection.close();

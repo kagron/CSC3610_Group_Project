@@ -21,7 +21,7 @@
          <children>
             <ImageView fitHeight="291.0" fitWidth="550.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../P100DModelSRed.jpg" />
+                  <Image url="@P100DModelSRed.jpg" />
                </image>
                <effect>
                   <Reflection />

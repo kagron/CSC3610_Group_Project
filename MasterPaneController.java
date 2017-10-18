@@ -1,10 +1,6 @@
 package CSC3610_Group_Project;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashMap;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +15,6 @@ import javafx.stage.Stage;
 
 public class MasterPaneController extends Application{
 		protected static BorderPane masterLayout;
-		protected static HashMap<String, Person> userMap = new HashMap<>();
 		private AnchorPane loaderScene;
 		private Stage primaryStage;
 		@FXML
@@ -70,6 +65,7 @@ public class MasterPaneController extends Application{
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
+			
 		}
 		
 		@FXML
@@ -96,39 +92,8 @@ public class MasterPaneController extends Application{
 			
 		}
 		
-		
-		
-		
-
-
 		public static void main(String[] args) {
-				
-				Customer customer = new Customer();
-
-//				Date date = LocalDate.of(1990, 5, 8);
-
-//				customer.setDOB(date);
-
-				customer.setEmail("jack@gmail.com");
-
-				customer.setFirstName("Jack");
-
-				customer.setLastName("Hill");
-				
-				customer.setPassword("password");
-
-				customer.setPhone("630-123-4567");
-
-				customer.setSSN("123-45-6789");
-
-				customer.setAddress("123 Main Street \n Naperville \n IL \n 60101");
-
-				customer.setUserName("Jack");
-
-				userMap.put(customer.getUserName(), customer);
-
-				launch(args);
-
-				}
-	
+			launch(args);
 		}
+	
+}
