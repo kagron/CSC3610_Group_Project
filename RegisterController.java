@@ -125,8 +125,8 @@ public class RegisterController extends Application{
 			System.out.println("Sending in customer");
 			conn.register(customer);
 			
-			MasterPaneController.userMap.put(customer.getUserName(), customer);
-			
+			//MasterPaneController.userMap.put(customer.getUserName(), customer);
+			// Send it back to the log in scene
 			try{
 				FXMLLoader loader = new FXMLLoader();
 				loader.setLocation(LogInController.class.getResource("LogInScene.fxml"));

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -10,19 +16,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="530.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CSC3610_Group_Project.LogInController">
+<AnchorPane prefHeight="530.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CSC3610_Group_Project.LogInController">
    <children>
       <VBox prefHeight="50.0" prefWidth="100.0">
          <children>
-            <Label text="Log In">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
             <ImageView fitHeight="322.0" fitWidth="551.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../P100DModelSRed.jpg" />
+                  <Image url="@P100DModelSRed.jpg" />
                </image>
                <effect>
                   <Reflection />
@@ -43,7 +43,12 @@
          </font>
       </Label>
       <TextField fx:id="txtUsername" layoutX="243.0" layoutY="368.0" />
-      <TextField fx:id="txtPassword" layoutX="243.0" layoutY="432.0" />
       <Label layoutY="341.0" prefHeight="17.0" prefWidth="551.0" />
+      <Label layoutX="224.0" layoutY="288.0" text="Log In">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <PasswordField id="txtPassword" fx:id="txtPassword" layoutX="243.0" layoutY="426.0" />
    </children>
 </AnchorPane>

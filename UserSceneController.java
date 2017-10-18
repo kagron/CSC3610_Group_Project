@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 public class UserSceneController extends Application {
 	
 	public static String firstName, lastName, phone, email, address, userName, password;
+	public static Person loggedInUser;
 	public static LocalDate DOB; 
 	public static String SSN;
 	
@@ -55,6 +56,7 @@ public class UserSceneController extends Application {
 		Scene scene = new Scene(controlsData);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 	}
 	
 	//Update Info button
@@ -74,13 +76,16 @@ public class UserSceneController extends Application {
 			MasterPaneController.masterLayout.setCenter(registerLayout);
 	});
 		
-		txtDisplayArea.setText(MasterPaneController.userMap.get(LogInController.userName).toString());
-
-		
+		//txtDisplayArea.setText(MasterPaneController.userMap.get(LogInController.userName).toString());
+		setUserText();
 	 }
-		public static void main(String[] args){
+	 public void setUserText() {
+		 txtDisplayArea.setText(UserSceneController.loggedInUser.toString());
+	 }
+	 public static void main(String[] args){
 		launch(args);
-		}		
+		
+	 }		
 }
 
 
