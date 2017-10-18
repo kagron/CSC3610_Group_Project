@@ -52,7 +52,7 @@
                   <TextField fx:id="txtSocialSecurityNumber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="txtUsername" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <DatePicker fx:id="dpDOB" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <PasswordField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
          </center>
