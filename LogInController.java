@@ -108,32 +108,8 @@ public class LogInController extends Application{
 				ex.printStackTrace();
 			}		
 		}
+		conn.closeDB();
 		
-	
-//		if(MasterPaneController.userMap.containsKey(txtUsername.getText())){
-//				userName = txtUsername.getText();
-//				try{
-//					FXMLLoader userLoader = new FXMLLoader();
-//					userLoader.setLocation(LogInController.class.getResource("UserScene.fxml"));
-//					userLayout = (AnchorPane) userLoader.load();
-//					MasterPaneController.masterLayout.setCenter(userLayout);
-//				
-//				}catch (IOException ex){
-//					System.out.println("asldkjfa");
-//					ex.printStackTrace();
-//				}
-//	
-//		}
-//		else{
-//			try{
-//				FXMLLoader userLoader = new FXMLLoader();
-//				userLoader.setLocation(ForgotPasswordController.class.getResource("ForgotPasswordScene.fxml"));
-//				forgotLayout = (AnchorPane) userLoader.load();
-//				MasterPaneController.masterLayout.setCenter(forgotLayout);
-//			
-//			}catch (IOException ex){
-//				ex.printStackTrace();
-//			}		}
 }
 	public static void main(String[] args){
 		launch(args);
