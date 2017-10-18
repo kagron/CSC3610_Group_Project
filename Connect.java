@@ -4,6 +4,8 @@ package CSC3610_Group_Project;
 import java.sql.*;
 import java.util.GregorianCalendar;
 
+import javafx.scene.control.Alert;
+
 public class Connect {
 	Connection connection;
 	PreparedStatement preparedStatement;
@@ -45,10 +47,21 @@ public class Connect {
 		    		  return true;
 		    	  } else {
 		    		  // This is where the incorrect password alert should pop up
-		    		  System.out.println("incorrect password");
+		    		//Alert User of missing fields
+						Alert alert = new Alert(Alert.AlertType.ERROR);
+					    alert.setTitle("Error");
+					    alert.setHeaderText(" Error");
+					    alert.setContentText("Incorrect Username or Password");
+					    alert.showAndWait();
+		    		  System.err.println("incorrect password");
 		    	  }
 		    } else { 
 		    	  // Throw new exception and alert
+			    	Alert alert = new Alert(Alert.AlertType.ERROR);
+				    alert.setTitle("Error");
+				    alert.setHeaderText(" Error");
+				    alert.setContentText("Incorrect Username or Password");
+				    alert.showAndWait();
 		    	  System.out.println("Not found in database");
 		    }
 		} catch (SQLException e) {

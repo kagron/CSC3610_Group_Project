@@ -1,10 +1,8 @@
 package CSC3610_Group_Project;
 
 
-import java.io.File;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.sql.*;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -13,15 +11,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class RegisterController extends Application{
@@ -69,6 +69,30 @@ public class RegisterController extends Application{
 	private MenuItem miDelete;
 	@FXML
 	private MenuItem miAbout;
+	@FXML
+	private Label lblFName;
+	@FXML
+	private Label lblLName;
+	@FXML
+	private Label lblPhone;
+	@FXML
+	private Label lblEmail;
+	@FXML
+	private Label lblDOB;
+	@FXML
+	private Label lblSSN;
+	@FXML
+	private Label lblStreet;
+	@FXML
+	private Label lblCity;
+	@FXML
+	private Label lblZip;
+	@FXML
+	private Label lblUserName;
+	@FXML
+	private Label lblPassword;
+	@FXML
+	private Label lblState;
 	
 	private ObservableList<String> stateList = FXCollections.observableArrayList("AL", "AK", "AZ", "AR", "CA", "CO", "CT",
 			"DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT",
@@ -78,6 +102,7 @@ public class RegisterController extends Application{
 	@FXML
 	public void initialize(){
 		cboState.setItems(stateList);
+		
 	}
 	
 	
@@ -136,8 +161,113 @@ public class RegisterController extends Application{
 			}catch (IOException ex){
 				ex.printStackTrace();
 			}
+		// If a field is missing
+		} else {
+			// Show alert
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+		    alert.setTitle("Error");
+		    alert.setHeaderText(" Error");
+		    alert.setContentText("Please fill out the selected fields");
+		    alert.showAndWait();
+		    // Check each individual fields
+			if(txtFirstName.getText().equals("")){
+				lblFName.setText("* First Name:");
+				lblFName.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out first name");
+			} else {
+				lblFName.setText("First Name:");
+				lblFName.setTextFill(Color.web("#000000"));
+			}
+			if(txtLastName.getText().equals("")){
+				lblLName.setText("* Last Name:");
+				lblLName.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out first name");
+			} else {
+				lblLName.setText("Last Name:");
+				lblLName.setTextFill(Color.web("#000000"));
+			}
+			if(txtPhoneNumber.getText().equals("")){
+				lblPhone.setText("* Phone Number:");
+				lblPhone.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out first name");
+			} else {
+				lblPhone.setText("Phone Number:");
+				lblPhone.setTextFill(Color.web("#000000"));
+			}
+			if(txtEmail.getText().equals("")){
+				lblEmail.setText("* Email:");
+				lblEmail.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out first name");
+			} else {
+				lblEmail.setText("Email:");
+				lblEmail.setTextFill(Color.web("#000000"));
+			}
+			if(dpDOB.getValue() == null){
+				lblDOB.setText("* Date of Birth:");
+				lblDOB.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out first name");
+			} else {
+				lblDOB.setText("Date of Birth:");
+				lblDOB.setTextFill(Color.web("#000000"));
+			}
+			if(txtSocialSecurityNumber.getText().equals("")){
+				lblSSN.setText("* Social Security Number:");
+				lblSSN.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out first name");
+			} else {
+				lblSSN.setText("Social Security Number:");
+				lblSSN.setTextFill(Color.web("#000000"));
+			}
+			if(txtUsername.getText().equals("")){
+				lblUserName.setText("* Username:");
+				lblUserName.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out first name");
+			} else {
+				lblUserName.setText("Username:");
+				lblUserName.setTextFill(Color.web("#000000"));
+			}
+			if(txtPassword.getText().equals("")){
+				lblPassword.setText("* Password:");
+				lblPassword.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out first name");
+			} else {
+				lblPassword.setText("Password:");
+				lblPassword.setTextFill(Color.web("#000000"));
+			}
+			if(txtStreet.getText().equals("")){
+				lblStreet.setText("* Street:");
+				lblStreet.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out first name");
+			} else {
+				lblStreet.setText("Street:");
+				lblStreet.setTextFill(Color.web("#000000"));
+			}
+			if(txtCity.getText().equals("")){
+				lblCity.setText("* City:");
+				lblCity.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out first name");
+			} else {
+				lblCity.setText("City:");
+				lblCity.setTextFill(Color.web("#000000"));
+			}
+			if(cboState.getSelectionModel().isEmpty()){
+				lblState.setText("* State:");
+				lblState.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out state");
+			} else {
+				lblState.setText("State:");
+				lblState.setTextFill(Color.web("#000000"));
+			}
+			if(txtZip.getText().equals("")){
+				lblZip.setText("* Zip Code:");
+				lblZip.setTextFill(Color.web("#FF0000"));
+				System.err.println("fill out first name");
+			} else {
+				lblZip.setText("Zip Code:");
+				lblZip.setTextFill(Color.web("#000000"));
+			}
 		}
-	}
+	} 
 	
 	@FXML
 	public void miCloseAction(ActionEvent e){
