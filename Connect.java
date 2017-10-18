@@ -4,6 +4,8 @@ package CSC3610_Group_Project;
 import java.sql.*;
 import java.util.GregorianCalendar;
 
+import javafx.scene.control.Alert;
+
 public class Connect {
 	Connection connection;
 	PreparedStatement preparedStatement;
@@ -28,7 +30,7 @@ public class Connect {
 	// Log in validation
 	public boolean validate(String username, String password){
 		// Create the query that will be filled in later
-		 String queryString = "select * from user " +
+		 String queryString = "select userName, password from user " +
 	    			"where userName = ? ";
 	    			
 		// Create a statement
@@ -40,21 +42,54 @@ public class Connect {
 		    // Once user is found, check the password
 		    if (rset.next()) {
 		    		System.out.println("Checking password");
-		    	  if(rset.getString(7).equals(password)) {
+		    	  if(rset.getString(2).equals(password)) {
 		    		  // Only return true if the password is the same
 		    		  return true;
 		    	  } else {
 		    		  // This is where the incorrect password alert should pop up
-		    		  System.out.println("incorrect password");
+		    		//Alert User of missing fields
+						Alert alert = new Alert(Alert.AlertType.ERROR);
+					    alert.setTitle("Error");
+					    alert.setHeaderText(" Error");
+					    alert.setContentText("Incorrect Username or Password");
+					    alert.showAndWait();
+		    		  System.err.println("incorrect password");
 		    	  }
 		    } else { 
 		    	  // Throw new exception and alert
+			    	Alert alert = new Alert(Alert.AlertType.ERROR);
+				    alert.setTitle("Error");
+				    alert.setHeaderText(" Error");
+				    alert.setContentText("Incorrect Username or Password");
+				    alert.showAndWait();
 		    	  System.out.println("Not found in database");
 		    }
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	// Create customer object
+	public Person createPerson(String loggedInUser){
+		String username = loggedInUser;
+		String query = "select * from user where userName = '"+ username+ "'";
+		Person person1 = new Person();
+		try {
+			Statement stmt = connection.createStatement();
+			ResultSet rs1 = stmt.executeQuery(query);
+			if(rs1.next()){
+				person1.setFirstName(rs1.getString(1));
+				person1.setLastName(rs1.getString(2));
+				person1.setPhone(rs1.getString(3));
+				person1.setEmail(rs1.getString(4));
+				person1.setAddress(rs1.getString(5));
+				person1.setUserName(rs1.getString(6));
+				person1.setDOB(rs1.getDate(8));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return person1;
 	}
 	// Register action
 	public void register(Customer cus) {
