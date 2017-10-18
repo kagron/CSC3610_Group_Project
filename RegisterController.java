@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -44,7 +45,7 @@ public class RegisterController extends Application{
 	@FXML
 	private TextField txtUsername;
 	@FXML
-	private TextField txtPassword;
+	private PasswordField txtPassword;
 	@FXML
 	private TextField txtStreet;
 	@FXML
