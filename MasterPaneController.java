@@ -61,8 +61,10 @@ public class MasterPaneController extends Application{
 			masterLayout.setCenter(loaderScene);
 			
 			
+			
 			Scene scene = new Scene(masterLayout);
 			primaryStage.setScene(scene);
+			primaryStage.sizeToScene();
 			primaryStage.show();
 			
 			
