@@ -67,7 +67,6 @@ public class UserSceneController extends Application {
 	//Update Info button
 	 @FXML
 	private void initialize() {
-	
 		 
 		
 	 }
