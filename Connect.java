@@ -82,32 +82,43 @@ public class Connect {
 				person1.setLastName(rs1.getString(2));
 				person1.setPhone(rs1.getString(3));
 				person1.setEmail(rs1.getString(4));
-				person1.setAddress(rs1.getString(5));
-				person1.setUserName(rs1.getString(6));
-				person1.setDOB(rs1.getDate(8));
+				person1.setStreet(rs1.getString(5));
+				person1.setcity(rs1.getString(6));
+				person1.setState(rs1.getString(7));
+				person1.setZip(rs1.getString(8));
+				person1.setUserName(rs1.getString(9));
+				person1.setDOB(rs1.getDate(11));
+				person1.setSSN(rs1.getString(12));
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return person1;
 	}
+	
 	// Register action
 	public void register(Customer cus) {
 		// Will take in a customer object and create a prepared statement
-		String query = "insert into user (firstName, lastName, phone, email, address, userName, password, DOB, ssn) values (?,?,?,?,?,?,?,?,?);";
+		String query = "insert into user (firstName, lastName, phone, email, street, city, state, zip, userName, password, DOB, ssn) values (?,?,?,?,?,?,?,?,?,?,?,?);";
 		// Prepare the statement by setting the strings equal to the various getter methods
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, cus.getFirstName());
 			preparedStatement.setString(2, cus.getLastName());
 			preparedStatement.setString(3, cus.getPhone());
 			preparedStatement.setString(4, cus.getEmail());
-			preparedStatement.setString(5, cus.getAddress());
-			preparedStatement.setString(6, cus.getUserName());
-			preparedStatement.setString(7, cus.getPassword());
-			preparedStatement.setDate(8, (Date) cus.getDOB(), new GregorianCalendar() );
-			preparedStatement.setString(9, cus.getSSN());
+			preparedStatement.setString(5, cus.getStreet());
+			preparedStatement.setString(6, cus.getcity());
+			preparedStatement.setString(7, cus.getState());
+			preparedStatement.setString(8, cus.getZip());
+			preparedStatement.setString(9, cus.getUserName());
+			preparedStatement.setString(10, cus.getPassword());
+			preparedStatement.setDate(11, cus.getDOB(), new GregorianCalendar() );
+			preparedStatement.setString(12, cus.getSSN());
+			
+
 			// Execute the query
 			preparedStatement.execute();
 			// This only prints out when a customer is fully added.  Delete this line later
@@ -117,6 +128,84 @@ public class Connect {
 			e.printStackTrace();
 		}
 	}
+	
+		//Update User action
+		public void updateUser(String update) {
+			// Prepare the statement by setting the strings equal to the various getter methods
+			try {
+/*				String nnnnnnnnnnaaaame = UserSceneController.loggedInUser.getUserName();
+				Statement statement = connection.createStatement();
+				ResultSet rs1 = statement.executeQuery("UPDATE user SET firstName = '', lastName = '?' WHERE userName = " + nnnnnnnnnnaaaame);
+			    String sql = "DELETE FROM user WHERE username = ?";
+				 
+				PreparedStatement statement = connection.prepareStatement(sql);
+				statement.setString(6, update.getUserName() );
+				 
+				int rowsDeleted = statement.executeUpdate();
+				if (rowsDeleted > 0) {
+			    System.out.println("A user was deleted successfully!");
+			
+*/				// Will take in a customer object and create a prepared statement
+				Person person1 = new Person();
+				String query = "UPDATE user SET firstName = ?, lastName = ?, phone = ?, email = ?, street = ?, city = ?, state = ?, zip = ?, password  = ?, DOB = ?, ssn = ? "
+									+ "WHERE username = ?";
+				
+				PreparedStatement preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setString(1, person1.getFirstName());
+				preparedStatement.setString(2, person1.getLastName());
+				preparedStatement.setString(3, person1.getPhone());
+				preparedStatement.setString(4, person1.getEmail());
+				preparedStatement.setString(5, person1.getStreet());
+				preparedStatement.setString(6, person1.getcity());
+				preparedStatement.setString(7, person1.getState());
+				preparedStatement.setString(8, person1.getZip());
+				preparedStatement.setString(9, person1.getUserName());
+				preparedStatement.setString(10, person1.getPassword());
+				preparedStatement.setDate(11, person1.getDOB(), new GregorianCalendar() );
+				preparedStatement.setString(12, person1.getSSN());
+				
+
+				// Execute the query
+				preparedStatement.execute();
+				// This only prints out when a customer is fully added.  Delete this line later
+				System.out.println("Customer Updated");
+			} catch (SQLException e) {
+				// This exception will only happen if a SQL error occurs
+				e.printStackTrace();
+			}
+		}			
+			
+
+				// Create customer object
+/*				public Person updatePerson(String loggedInUser){
+					String username = loggedInUser;
+					String query = "UPDATE user SET (firstName, lastName, phone, email, street, city, state, zip, userName, password, DOB, ssn) values (?,?,?,?,?,?,?,?,?,?,?,?);"
+										+ " WHERE username = "+ username;
+					Person person1 = new Person();
+					try {
+						Statement stmt = connection.createStatement();
+						ResultSet rs1 = stmt.executeQuery(query);
+						if(rs1.next()){
+							person1.setFirstName(rs1.getString(1));
+							person1.setLastName(rs1.getString(2));
+							person1.setPhone(rs1.getString(3));
+							person1.setEmail(rs1.getString(4));
+							person1.setStreet(rs1.getString(5));
+							person1.setcity(rs1.getString(6));
+							person1.setState(rs1.getString(7));
+							person1.setZip(rs1.getString(8));
+							person1.setUserName(rs1.getString(9));
+							person1.setPassword(rs1.getString(10));
+							person1.setDOB(rs1.getDate(11));
+							person1.setSSN(rs1.getString(12));
+							
+						}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					return person1;
+*/				
+
 	// Close the database
 	public void closeDB() {
 		try {
