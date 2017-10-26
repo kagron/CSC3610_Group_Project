@@ -94,19 +94,19 @@ public class UpdateController extends Application{
 	private Label lblPassword;
 	@FXML
 	private Label lblState;
-	
+
 	private ObservableList<String> stateList = FXCollections.observableArrayList("AL", "AK", "AZ", "AR", "CA", "CO", "CT",
 			"DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT",
 			"NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT",
-			"VA", "WA", "WV", "WI", "WY"); 
-	
+			"VA", "WA", "WV", "WI", "WY");
+
 	@FXML
 	public void initialize(){
 		cboState.setItems(stateList);
-		
+
 	}
-	
-	
+
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
@@ -115,17 +115,17 @@ public class UpdateController extends Application{
 
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(UpdateController.class.getResource("UpdateScene.fxml"));
-		
+
 		try{
 			updateLayout = (AnchorPane) loader.load();
 		}catch (IOException e){
 			e.printStackTrace();
 		}
-		
+
 		Scene scene = new Scene(updateLayout);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		
+
 	}
 
 	@FXML
@@ -147,13 +147,13 @@ public class UpdateController extends Application{
 			customer.setUserName(txtUsername.getText());
 			customer.setPhone(txtPhoneNumber.getText());
 			customer.setSSN(txtSocialSecurityNumber.getText());
-			
+
 			// Send in customer to register
 			Connect conn = new Connect();
 			conn.initalizeDB();
 			System.out.println("Sending in customer");
 			conn.register(customer);
-			
+
 			//MasterPaneController.userMap.put(customer.getUserName(), customer);
 			// Send it back to the log in scene
 			try{
@@ -161,7 +161,7 @@ public class UpdateController extends Application{
 				loader.setLocation(LogInController.class.getResource("LogInScene.fxml"));
 				logInLayout = (AnchorPane) loader.load();
 				MasterPaneController.masterLayout.setCenter(logInLayout);
-				
+
 			}catch (IOException ex){
 				ex.printStackTrace();
 			}
@@ -271,14 +271,14 @@ public class UpdateController extends Application{
 				lblZip.setTextFill(Color.web("#000000"));
 			}
 		}
-	} 
-	
+	}
+
 	@FXML
 	public void miCloseAction(ActionEvent e){
 		System.exit(0);
 	}
-	
-	
+
+
 	@FXML
 	public void miDeleteAction(ActionEvent e){
 		clear();
@@ -299,7 +299,9 @@ public class UpdateController extends Application{
 		txtZip.setText(null);
 	}
 
-	
-	
-	
+
+	public static void main(String[] args){
+		launch(args);
+	}
+
 }
