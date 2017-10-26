@@ -71,7 +71,7 @@ public class ForgotPasswordController extends Application {
 				// Initialize the DB and grab the username and password
 				conn.initalizeDB();
 				userName = txtUsername.getText();
-				String password = txtPassword.getText();
+				String password = HashPassword.hashPassword(txtPassword.getText());
 				// If validate returns true, that means that the user is found in the database and their password is correct
 				if(conn.validate(userName,password)) {
 					// Set a fake "cookie" as loggedInUser that will be used later
@@ -105,7 +105,5 @@ public class ForgotPasswordController extends Application {
 	}
 
 
-	public static void main(String[] args){
-		launch(args);
-	}		
+			
 }

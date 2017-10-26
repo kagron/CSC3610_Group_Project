@@ -3,10 +3,12 @@ package CSC3610_Group_Project;
 import java.io.IOException;
 import java.time.LocalDate;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -20,23 +22,26 @@ public class UserSceneController extends Application {
 	
 	private Stage primaryStage;
 	private AnchorPane controlsData;
-	private AnchorPane registerLayout;
-	
-	@FXML
-	private TextArea txtDisplayArea; 
-	
-	@FXML
-	private Button btnDisplayInfo;
-	
-	@FXML
-	private Button btnUpdateInfo;
-	
-	@FXML
-	private Button btnCustomize;
+	private AnchorPane userLayout;
 	
 	@FXML
 	private Button btnCart;
-
+	@FXML
+	private Button btnBack;
+	@FXML
+	private Button btnGetStarted;
+	@FXML
+	private Button btnProfile;
+	@FXML
+	private Button btnSales;
+	@FXML
+	private ComboBox<String> cboColor;
+	@FXML
+	private ComboBox<String> cboInterior;
+	@FXML
+	private ComboBox<String> cboWheels;
+	@FXML
+	private ComboBox<String> cboRoof;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -44,7 +49,7 @@ public class UserSceneController extends Application {
 		this.primaryStage.setTitle("Tesla: Customer Info");
 		
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(UserSceneController.class.getResource("UserScene.fxml"));
+		loader.setLocation(UserSceneController.class.getResource("HomeScene.fxml"));
 		
 		try{
 			controlsData = (AnchorPane) loader.load();
@@ -62,30 +67,21 @@ public class UserSceneController extends Application {
 	//Update Info button
 	 @FXML
 	private void initialize() {
-	
-	//closes program
-	btnUpdateInfo.setOnAction((event) ->{
-			
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(LogInController.class.getResource("RegisterScene.fxml"));
+		 
+		
+	 }
+	 @FXML
+	 public void getStarted(ActionEvent e){	
+			FXMLLoader userLoader = new FXMLLoader();
+			userLoader.setLocation(LogInController.class.getResource("CarScene.fxml"));
 			try {
-				registerLayout = (AnchorPane) loader.load();
-			} catch (IOException e) {
-				e.printStackTrace();
+				userLayout = (AnchorPane) userLoader.load();
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
-			MasterPaneController.masterLayout.setCenter(registerLayout);
-	});
-		
-		//txtDisplayArea.setText(MasterPaneController.userMap.get(LogInController.userName).toString());
-		setUserText();
+			
+			MasterPaneController.masterLayout.setCenter(userLayout);
 	 }
-	 public void setUserText() {
-		 txtDisplayArea.setText(UserSceneController.loggedInUser.toString());
-	 }
-	 public static void main(String[] args){
-		launch(args);
-		
-	 }		
 }
 
 

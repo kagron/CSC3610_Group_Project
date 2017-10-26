@@ -88,14 +88,20 @@ public class LogInController extends Application{
 			try{
 				UserSceneController.loggedInUser = loggedInUser;
 				FXMLLoader userLoader = new FXMLLoader();
-				userLoader.setLocation(LogInController.class.getResource("UserScene.fxml"));
+				userLoader.setLocation(LogInController.class.getResource("HomeScene.fxml"));
 				userLayout = (AnchorPane) userLoader.load();
+				
 				MasterPaneController.masterLayout.setCenter(userLayout);
+				
+
+//				MasterPaneController.masterLayout.setMinHeight(740.0);
+//				MasterPaneController.masterLayout.setMinWidth(471.0);
+
 			
 			}catch (IOException ex){
 				ex.printStackTrace();
 			}
-		// If the user is not found in the database OR if the password is incorrect (i think)
+		// If the user is not found in the database OR if the password is incorrect
 		} else {
 		
 			try{
@@ -111,8 +117,6 @@ public class LogInController extends Application{
 		conn.closeDB();
 		
 }
-	public static void main(String[] args){
-		launch(args);
-	}
+	
 	
 }
