@@ -69,7 +69,10 @@ public class LogInController extends Application{
 		}
 		
 	}
-	
+	@FXML
+	public void goToDoc(ActionEvent e) {
+		 getHostServices().showDocument("https://github.com/Jonathan-Birkey/CSC3610_Group_Project/blob/Car-Class/GroupNotes.md");
+	}
 	@FXML
 	public void btLogInAction(ActionEvent e){
 		// Attempt to log in by creating a connect object
