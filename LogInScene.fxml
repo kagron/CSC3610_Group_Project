@@ -30,8 +30,8 @@
             </ImageView>
          </children>
       </VBox>
-      <Button fx:id="btnLogIn" layoutX="167.0" layoutY="491.0" mnemonicParsing="false" onAction="#btLogInAction" text="Login" />
-      <Button fx:id="btnRegister" layoutX="332.0" layoutY="491.0" mnemonicParsing="false" onAction="#btRegisterAction" text="Register" />
+      <Button fx:id="btnLogIn" layoutX="168.0" layoutY="468.0" mnemonicParsing="false" onAction="#btLogInAction" text="Login" />
+      <Button fx:id="btnRegister" layoutX="337.0" layoutY="468.0" mnemonicParsing="false" onAction="#btRegisterAction" text="Register" />
       <Label layoutX="155.0" layoutY="370.0" text="Username:">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -50,5 +50,6 @@
          </font>
       </Label>
       <PasswordField id="txtPassword" fx:id="txtPassword" layoutX="243.0" layoutY="426.0" />
+      <Hyperlink fx:id="documentation" layoutX="28.0" layoutY="485.0" onAction="#goToDoc" text="Documentation" />
    </children>
 </AnchorPane>
