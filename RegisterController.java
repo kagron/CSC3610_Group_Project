@@ -154,10 +154,7 @@ public class RegisterController extends Application{
 			// Only goes through if onlyNumbers stayed true
 			if(onlyNumbers){
 				Customer customer = new Customer();
-				customer.setStreet(txtStreet.getText());
-				customer.setZip(txtZip.getText());
-				customer.setcity(txtCity.getText());
-				customer.setState(cboState.getValue());
+				customer.setAddress(txtStreet.getText() + " " + txtCity.getText() + " " + cboState.getValue().toString() + ", " + txtZip.getText());
 				customer.setDOB(java.sql.Date.valueOf(dpDOB.getValue()));
 				customer.setEmail(txtEmail.getText());
 				customer.setFirstName(txtFirstName.getText());
@@ -282,4 +279,7 @@ public class RegisterController extends Application{
 		cboState.setValue(null);
 		txtZip.setText(null);
 	}
+
+	
+	
 }
