@@ -320,4 +320,6 @@ public class UpdateController extends Application{
 		cboState.setValue(null);
 		txtZip.setText(null);
 	}
+
 }
+
